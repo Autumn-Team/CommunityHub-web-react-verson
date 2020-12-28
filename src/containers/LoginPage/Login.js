@@ -13,7 +13,7 @@ class Login extends Component {
                 label: 'Username: ',
                 elementType: 'input',
                 elementConfig: {
-                    text: 'email',
+                    type: 'email',
                     placeholder: 'Please enter your username',
                 },
                 value: '',
@@ -27,7 +27,7 @@ class Login extends Component {
                 label: 'Password: ',
                 elementType: 'input',
                 elementConfig: {
-                    text: 'password',
+                    type: 'password',
                     placeholder: 'Please enter your password',
                 },
                 value: '',
@@ -72,6 +72,13 @@ class Login extends Component {
     
     }
 
+    loginEventHandler = () => {
+        //handle event
+
+        this.props.history.push('/homePage');
+    }
+
+
     render () {
         //get form info in state
         const formElementArray = [];
@@ -84,7 +91,7 @@ class Login extends Component {
 
         //create form components
         let form = (
-            <form onSubmit="/">
+            <form onSubmit={this.loginEventHandler}>
                 {formElementArray.map(element => (
                     <Input
                         key={element.id}
@@ -93,7 +100,6 @@ class Login extends Component {
                         elementConfig={element.config.elementConfig}
                         value={element.config.value}
                         valid={element.config.valid}
-                        // shouldValidation={element.config.validation}
                         touched={element.config.touched}
                         changed={(event) => this.inputChangedHandler(event, element.id)} />
                 ))}
