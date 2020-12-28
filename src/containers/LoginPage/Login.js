@@ -4,6 +4,7 @@ import classes from './Login.module.css';
 import Logo from '../../components/Logo/Logo';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
+import SocialImage from '../../components/SocialImage/SocialImage';
 
 class Login extends Component {
     state = {
@@ -109,6 +110,11 @@ class Login extends Component {
                 </div>
                 <div className={classes.Or}>OR</div>
                 <div className={classes.Register}><Button btnType="Link">Register here</Button> or use social media</div>
+                <div className={classes.Social}>
+                    <Button btnType="Social" disabled={false}><SocialImage ImageType="facebook" /></Button>
+                    <Button btnType="Social" disabled={false}><SocialImage ImageType="twitter" /></Button>
+                    <Button btnType="Social" disabled={false}><SocialImage ImageType="google" /></Button>
+                </div>
             </React.Fragment>
         );
     };
