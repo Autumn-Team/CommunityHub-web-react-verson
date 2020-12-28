@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LoginPage from './views/loginSystem/loginPage';
+
+import './index.css';
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <LoginPage />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
