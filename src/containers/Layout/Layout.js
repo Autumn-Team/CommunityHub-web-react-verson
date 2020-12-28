@@ -1,5 +1,7 @@
 import React, { Component} from 'react';
 
+import Footer from '../../components/Footer/Footer';
+
 class Layout extends Component {
     render () {
         return (
@@ -7,7 +9,7 @@ class Layout extends Component {
                 <main >
                     {this.props.children}
                 </main>
-                <div>This is footer</div>
+                <Footer />
             </React.Fragment>
         )
     }
