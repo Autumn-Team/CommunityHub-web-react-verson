@@ -22,6 +22,12 @@
     padding: 0px;
 }
 
+.Social {
+    width: auto;
+    height: auto;
+    background-color: white;
+}
+
 .Danger {
     color: red;
     
