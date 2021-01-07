@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class HomePage extends Component {
-    render () {
-        return (
-            <div>this is HomePage {this.props.location.pathname}</div>
-        );
-    };
+const HomePage = props =>  {
+    return (
+        <div>this is HomePage</div>
+    );
 }
 
 export default HomePage;
