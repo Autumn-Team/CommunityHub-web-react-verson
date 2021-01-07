@@ -3,11 +3,12 @@
     padding: 0px;
     box-sizing: border-box;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     flex-direction: row;
     justify-content: center;
 }
 .Label {
+    width: 18%;
     font-weight: bold;
     display: block;
 }
@@ -17,7 +18,7 @@
     border: 1px solid #ccc;
     background-color: white;
     font: inherit;
-    margin: 15px;
+    margin: 12px 12px 8px;
     padding: 6px 10px;
     width: 60%;
     display: block; 
@@ -36,5 +37,5 @@
 
 .Error {
     color: red;
-    margin: 10px 0;
+    margin: 0px;
 } 

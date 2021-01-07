@@ -31,12 +31,14 @@ const Input = (props) => {
     }
 
     return (
-        <div className={classes.Input} >
-            <label className={classes.Label}>{props.label}</label>
-            {inputElement}
-            {/* {error} */}
-            
-        </div>
+        <React.Fragment>
+            <div className={classes.Input} >
+                <label className={classes.Label}>{props.label}</label>
+                {inputElement}
+            </div>
+            {error}
+        </React.Fragment>
+        
     )
 }
 
