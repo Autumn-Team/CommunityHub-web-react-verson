@@ -1,18 +1,16 @@
-import React, { Component} from 'react';
+import React from 'react';
 
 import Footer from '../../components/Footer/Footer';
 
-class Layout extends Component {
-    render () {
-        return (
-            <React.Fragment>
-                <main >
-                    {this.props.children}
-                </main>
-                <Footer />
-            </React.Fragment>
-        )
-    }
+const Layout = props =>  {
+    return (
+        <React.Fragment>
+            <main >
+                {props.children}
+            </main>
+            <Footer />
+        </React.Fragment>
+    )
 }
 
 export default Layout;
