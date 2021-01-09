@@ -3,7 +3,7 @@ import React from 'react';
 import classes from './NavigationItems.module.css';
 import NavigationItem from './NavigationItem/NavigationItem';
 
-const NavigationBar = () => (
+const NavigationItems = () => (
     <ul className={classes.NavigationItems}>
         <NavigationItem link="/homePage" exact>HomePage</NavigationItem>
         <NavigationItem link="/forum">Forum</NavigationItem>
@@ -13,4 +13,4 @@ const NavigationBar = () => (
     </ul>
 );
 
-export default NavigationBar;
+export default NavigationItems;

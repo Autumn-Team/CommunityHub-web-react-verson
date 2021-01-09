@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Footer from '../../components/Footer/Footer';
-import NavBar from '../../components/Navigation/NavBar/NavBar';
+import NavBar from '../../components/Navigation/NavBar';
 
 const Layout = props =>  {
     const location = useLocation();

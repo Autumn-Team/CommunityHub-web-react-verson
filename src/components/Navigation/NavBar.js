@@ -1,7 +1,7 @@
 import React from 'react';
 
 import classes from './NavBar.module.css';
-import NavigationItems from '../NavigationItems/NavigationItems';
+import NavigationItems from './NavigationItems/NavigationItems';
 
 const NavBar = props => (
     <header className={classes.NavBar}>
