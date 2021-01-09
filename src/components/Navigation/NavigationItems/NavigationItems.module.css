@@ -1,8 +1,9 @@
 .NavigationItems {
-   margin: 0; 
+   margin: 0px; 
    padding: 0px 0px;
    list-style: none;
    display: flex;
    align-items: center;
-   height: 100%;
+   height: inherit;
+   border-left: 1px solid rgb(255, 79, 79);
 }
