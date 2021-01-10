@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import classes from './Layout.module.css';
 import Footer from '../../components/Footer/Footer';
-import NavBar from '../../components/Navigation/NavBar';
+import NavBar from '../../components/Navigation/MainNavBar/NavBar';
 
 const Layout = props =>  {
     const location = useLocation();
