@@ -1,13 +1,13 @@
 import React from 'react';
 
 import classes from './NavBar.module.css';
-import NavigationItems from '../NavigationItems/NavigationItems';
+import MainNavigationItems from '../NavigationItems/MainNavigationItems';
 
 const NavBar = props => (
     <header className={classes.NavBar}>
         <div>Logo here</div>
         <nav>
-            <NavigationItems />
+            <MainNavigationItems />
         </nav>
         <div>account here</div>
     </header>
