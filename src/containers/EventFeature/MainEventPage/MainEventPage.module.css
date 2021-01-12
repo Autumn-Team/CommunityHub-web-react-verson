@@ -7,3 +7,15 @@
     border-left: 1px solid black;
     border-right: 1px solid black;
 }
+
+.EventContent h2 {
+    margin: 20px 20px;
+}
+
+.EventList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}

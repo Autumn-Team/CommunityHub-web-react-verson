@@ -1,0 +1,33 @@
+.Event {
+    width: 30%;
+    height: 100%;
+    box-sizing: border-box;
+    display: block;
+    border: 1px solid black;
+    margin: 20px 13px;
+    padding: 0px;
+    background-color: silver;
+}
+
+.Cover {
+    border-bottom: 1px solid black;
+    text-align: center;
+    margin: 0px auto;
+    padding: 20%;
+}
+
+.Date,
+.Location {
+    margin: 4px 10px 0px;
+}
+
+.Event h4 {
+    margin: 0px 10px;
+}
+
+.Button {
+    margin: 10px auto 10px 50px;
+    padding-right: 15px ;
+    text-align: right;
+    border: 1px solid red;
+}
