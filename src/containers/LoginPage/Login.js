@@ -5,19 +5,21 @@ import Logo from '../../components/Logo/Logo';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import SocialImage from '../../components/SocialImage/SocialImage';
+import { updateObject, checkValidity } from '../../sharedFunctions/utility';
 
 const Login = props => {
-    const [formStructure, setFormStructure] = useState({
+    const [loginForm, setLoginForm] = useState({
         Username: {
             label: 'Username: ',
             elementType: 'input',
             elementConfig: {
                 type: 'email',
-                placeholder: 'Please enter your username',
+                placeholder: 'Please enter your email',
             },
             value: '',
             validation: {
                 required: true,
+                isEmail: true,
             },
             valid: false,
             touched: false,
@@ -39,32 +41,24 @@ const Login = props => {
     });
     const [formIsValid, setFormIsValid] = useState(false);
 
-    const checkValidity = (value, rules) => {
-        let isValid = true;
-
-        if (rules.required){
-            isValid = value.trim() !== '' && isValid;
-        }
-        //More rules here
-
-        return isValid;
-    }
-
+    
     const inputChangedHandler = (event, inputIdenfifier) => {
-        const updatedForm = {...formStructure};
-        const updatedFormElement = {...updatedForm[inputIdenfifier]};
-        updatedFormElement.value = event.target.value;
-        updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation);
-        updatedFormElement.touched = true;
-        updatedForm[inputIdenfifier] = updatedFormElement;
+        const updatedFormElement = updateObject(loginForm[inputIdenfifier], {
+            value: event.target.value,
+            valid: checkValidity(event.target.value, loginForm[inputIdenfifier].validation),
+            touched: true,
+        })
+        const updatedLoginForm = updateObject(loginForm, {
+            [inputIdenfifier] : updatedFormElement,
+        })
 
         // Check validity of all element
         let checkFormIsValid = true;
-        for(let Identifier in updatedForm) {
-            checkFormIsValid = updatedForm[Identifier].valid && checkFormIsValid;
+        for(let Identifier in updatedLoginForm) {
+            checkFormIsValid = updatedLoginForm[Identifier].valid && checkFormIsValid;
         }
         // update state
-        setFormStructure(updatedForm);
+        setLoginForm(updatedLoginForm);
         setFormIsValid(checkFormIsValid);
     }
 
@@ -76,10 +70,10 @@ const Login = props => {
 
     //get form info in state
     const formElementArray = [];
-    for (let element in formStructure){
+    for (let element in loginForm){
         formElementArray.push({
             id: element,
-            config: formStructure[element]
+            config: loginForm[element]
         });
     }
 
