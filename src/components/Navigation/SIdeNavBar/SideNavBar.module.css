@@ -1,7 +1,8 @@
 .SideNavBar {
-    top: 9.6%;
-    left: 17.34%;
-    width: 65.25%;
+    top: 3.7rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 65.21%;
     height: 60px;
     position: fixed;
     background-color:#fff1e6;
@@ -9,7 +10,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-right: 15px;
+    padding-right: 10px;
     box-sizing: border-box;
     color: black;
     border: 1px solid black; 

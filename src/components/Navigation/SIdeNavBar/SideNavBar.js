@@ -6,7 +6,7 @@ import SideNavigationItems from '../NavigationItems/SideNavigationItems';
 const SideNavBar = props => {
     return (
         <nav className={classes.SideNavBar}>
-            <SideNavigationItems />
+            <SideNavigationItems featureType={props.featureType} />
             <div>Search here</div>
             <div>page number</div>
         </nav>

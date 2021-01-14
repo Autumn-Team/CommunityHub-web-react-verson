@@ -7,7 +7,7 @@ import Event from '../../../components/Event/Event';
 const MainEventPage = () => {
     return (
         <React.Fragment> 
-            <SideNavBar />
+            <SideNavBar featureType="MainEvent" />
             <section className={classes.EventContent} >                
                <h2>Next Event</h2>
                <div className={classes.EventList}>
