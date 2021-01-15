@@ -20,7 +20,7 @@ const SideNavigationItems = props => {
 
     return(
         <ul className={classes.SideNavigationItems}>
-            <NavigationItem type="Side" link="/newEvent" >{btn1}</NavigationItem>
+            <NavigationItem type="Side" link="/event/newEvent" >{btn1}</NavigationItem>
             <NavigationItem type="Side" link="/st2" >{btn2}</NavigationItem>
         </ul>
     );

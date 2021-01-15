@@ -14,6 +14,7 @@ const MainEventPage = () => {
                 <Event date="20-10-2020" title="Test title" location="this is location" />
                 <Event date="20-10-2020" title="Test title" location="this is location" />
                 <Event date="20-10-2020" title="Test title" location="this is location" />
+                <Event date="20-10-2020" title="Test title" location="this is location" />
                </div>
             </section>
         </React.Fragment>
