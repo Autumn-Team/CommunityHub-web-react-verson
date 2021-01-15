@@ -1,0 +1,26 @@
+.NewEvent {
+    margin-left: auto;
+    margin-right: auto;
+    width: 65.2%;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.NewEvent h2 {
+    margin: 20px 20px;
+}
+
+.NewEvent form {
+     width: 90%;
+     margin: 0px auto;
+     
+}
+
+.ButtonGroup {
+    width: 90%;
+    margin: 30px auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

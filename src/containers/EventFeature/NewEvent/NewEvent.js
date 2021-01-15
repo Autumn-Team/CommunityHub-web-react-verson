@@ -8,7 +8,7 @@ import { updateObject, checkValidity } from '../../../sharedFunctions/utility';
 const NewEvent = props => {
     const [eventForm, setEventForm] = useState({
         title: {
-            label: 'Title: ',
+            label: 'Title:',
             elementType: 'input',
             elementConfig: {
                 type: 'text',
@@ -22,7 +22,7 @@ const NewEvent = props => {
             touched: false,
         },
         description: {
-            label: 'Description: ',
+            label: 'Description:',
             elementType: 'textarea',
             elementConfig: {
                 placeholder: 'Please enter description',
@@ -37,62 +37,23 @@ const NewEvent = props => {
             touched: false,
         },
         time: {
-            label: 'Time: ',
+            label: 'Time:',
             elementType: 'input',
             elementConfig: {
-                type: 'number',
-                placeholder: 'hour',
-                min: 0,
-                max: 12,
+                type: 'time',
             },
             value: '',
             validation: {
                 required: true,
-                min: 0,
-                max: 12,
             },
             valid: false,
             touched: false,
-        },
-        minutes: {
-            label: null,
-            elementType: 'input',
-            elementConfig: {
-                type: 'number',
-                placeholder: 'minutes',
-                min: 0,
-                max: 59,
-            },
-            value: '',
-            validation: {
-                required: true,
-                min: 0,
-                max: 59,
-            },
-            valid: false,
-            touched: false,
-        },
-        AMPMOption: {
-            label: null,
-            elementType: 'select',
-            elementConfig: {
-                options: [
-                    {value: 'AM', displayValue: 'AM'},
-                    {value: 'PM', displayValue: 'PM'},
-                ]
-            },
-            value: 'AM',
-            validation: {
-                required: true,
-            },
-            valid: true,
         },
         date: {
-            label: 'Date',
+            label: 'Date:',
             elementType: 'input',
             elementConfig: {
                 type: 'date',
-                placeholder: 'Date',
             },
             value: '',
             validation: {
@@ -102,7 +63,7 @@ const NewEvent = props => {
             touched: false,
         },
         location: {
-            label: 'Location',
+            label: 'Location:',
             elementType: 'input',
             elementConfig: {
                 type: 'text',
@@ -116,7 +77,7 @@ const NewEvent = props => {
             touched: false,
         },
         tag: {
-            label: 'Tag',
+            label: 'Tag:',
             elementType: 'input',
             elementConfig: {
                 type: 'text',
@@ -148,11 +109,50 @@ const NewEvent = props => {
         setFormIsValid(checkFormIsValid);
     }
 
-    return(
-        <React.Fragment>
-            <h2>Create new event</h2>
+    const newEventSubmitHandler = (event) => {
+        event.preventDefault();
 
-        </React.Fragment>
+        props.history.push('/aaaa');
+    }
+
+    const discardHandler = () => {
+        props.history.goBack();
+    }
+
+    const fromElementArray = [];
+    for (let key in eventForm){
+        fromElementArray.push({
+            id: key,
+            config: eventForm[key]
+        });
+    }
+
+    let form = (
+        <form onSubmit={newEventSubmitHandler}>
+            {fromElementArray.map(formElement => (
+                <Input
+                    key={formElement.id}
+                    label={formElement.config.label}
+                    elementType={formElement.config.elementType}
+                    elementConfig = {formElement.config.elementConfig}
+                    value={formElement.config.value}
+                    valid={formElement.config.valid}
+                    touched={formElement.config.touched}
+                    changed={(event) => inputChangeHandler(event, formElement.id)} />
+            ))}
+            <div className={classes.ButtonGroup}>
+                <Button btnType="Success" disabled={!formIsValid}>Save</Button>
+                <Button disabled>Add document</Button>
+                <Button clicked={discardHandler}>Discard</Button>
+            </div>
+        </form>
+    )
+
+    return(
+        <div className={classes.NewEvent}>
+            <h2>Create new event</h2>
+            {form}
+        </div>
     )
 }
 
