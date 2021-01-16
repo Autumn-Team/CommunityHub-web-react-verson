@@ -6,6 +6,7 @@ import Login from './containers/LoginPage/Login';
 import HomePage from './containers/HomePage/HomePage';
 import Event from './containers/EventFeature/MainEventPage/MainEventPage';
 import NewEvent from './containers/EventFeature/NewEvent/NewEvent';
+import EventDetails from './containers/EventFeature/EventDetails/EventDetails';
 
 const App = props =>  {
     return (
@@ -15,6 +16,7 @@ const App = props =>  {
                 <Route path="/homePage" component={HomePage} />
                 <Route path="/event" exact component={Event} />
                 <Route path="/event/newEvent" component={NewEvent} />
+                <Route path="/test" component={EventDetails} />
             </Switch>
         </Layout>
     )
