@@ -5,13 +5,45 @@ import NavigationItem from './NavigationItem/NavigationItem';
 import Icons from '../../Icons/Icons';
 
 const SideNavigationItems = props => {
-    let btn1 = null;
-    let btn2 = null;
+    let area1 = null;
+    let area2 = null;
 
     switch(props.featureType){
         case ("MainEvent"):
-            btn1 = <div><Icons IconType="createNew" />Create new event</div>;
-            btn2 = <div><Icons IconType="eventIcon" />Attending event</div>;;
+            area1 = (
+                <NavigationItem type="Side" link="/event/newEvent" >
+                    <div>
+                        <Icons IconType="createNew" />
+                        Create new event
+                    </div>
+                </NavigationItem>
+            );
+            area2 = (
+                <NavigationItem type="Side" link="/event/eventList" >
+                    <div>
+                        <Icons IconType="eventIcon" />
+                        Attending event
+                    </div>
+                </NavigationItem>
+            );
+            break;
+        case ('DetailedEvent'):
+            area1 = (
+                <NavigationItem type="Side" link="/event" >
+                    <div>
+                        <Icons IconType="backIcon" />
+                        Back to HomeEvent
+                    </div>
+                </NavigationItem>
+            );
+            area2 = (
+                <NavigationItem type="Side" link="/#" >
+                    <div>
+                    <Icons IconType="editIcon" />
+                        Edit event
+                    </div>
+                </NavigationItem>
+            );
             break;
         default:
             //do nothing
@@ -20,8 +52,8 @@ const SideNavigationItems = props => {
 
     return(
         <ul className={classes.SideNavigationItems}>
-            <NavigationItem type="Side" link="/event/newEvent" >{btn1}</NavigationItem>
-            <NavigationItem type="Side" link="/st2" >{btn2}</NavigationItem>
+            {area1}
+            {area2}
         </ul>
     );
 }

@@ -17,6 +17,7 @@ const SideNavBar = props => {
         case ('DetailedEvent'):
             nav = <nav className={classes.SideNavBar}>
                 <SideNavigationItems featureType={props.featureType} />
+                <div>Information</div>
                 <div>btn1</div>
                 <div>btn2</div>
             </nav>
