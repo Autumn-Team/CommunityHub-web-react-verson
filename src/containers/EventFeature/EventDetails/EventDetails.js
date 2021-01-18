@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 
 import classes from './EventDetails.module.css';
-import SideNavBar from '../../../components/Navigation/SIdeNavBar/SideNavBar';
+import SideNavBar from '../../../components/Navigation/SideNavBar/SideNavBar';
 
 const EventDetails = props => {
     const [loadEvent, setLoadEvent] = useState('null');

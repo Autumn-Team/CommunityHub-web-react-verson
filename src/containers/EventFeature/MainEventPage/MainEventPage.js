@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 import classes from './MainEventPage.module.css';
-import SideNavBar from '../../../components/Navigation/SIdeNavBar/SideNavBar';
+import SideNavBar from '../../../components/Navigation/SideNavBar/SideNavBar';
 import Event from '../../../components/Event/Event';
 
 const MainEventPage = () => {
@@ -10,8 +10,9 @@ const MainEventPage = () => {
 
     let h2Title = <h2>Next Event</h2>;
     let sideNav = <SideNavBar featureType="MainEvent" />;
-    if(location.pathname !== "/event/eventList"){
+    if(location.pathname === "/event/eventList"){
         h2Title = <h2>List Event</h2>;
+        sideNav = <SideNavBar featureType="EventList" />;
     }
 
     return (

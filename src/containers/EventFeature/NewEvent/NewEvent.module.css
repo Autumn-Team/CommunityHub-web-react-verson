@@ -1,13 +1,13 @@
 .NewEvent {
     margin-left: auto;
     margin-right: auto;
-    width: 65.2%;
+    width: 65%;
     border: 1px solid black;
     background-color: white;
 }
 
 .NewEvent h2 {
-    margin: 20px 20px;
+    margin: 15px 40px;
 }
 
 .NewEvent form {
@@ -18,7 +18,7 @@
 
 .ButtonGroup {
     width: 90%;
-    margin: 30px auto;
+    margin: 28px auto;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;

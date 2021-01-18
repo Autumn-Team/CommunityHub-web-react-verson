@@ -22,6 +22,13 @@ const SideNavBar = props => {
                 <div>btn2</div>
             </nav>
             break;
+        case ('EventList'):
+            nav = <nav className={classes.SideNavBar}>
+                <SideNavigationItems featureType={props.featureType} />
+                <div>Search here</div>
+                <div>page number</div>
+            </nav>
+            break;
         default:
             break;
     }

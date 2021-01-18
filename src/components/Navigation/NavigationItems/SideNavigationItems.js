@@ -45,6 +45,24 @@ const SideNavigationItems = props => {
                 </NavigationItem>
             );
             break;
+        case ('EventList'):
+            area1 = (
+                <NavigationItem type="Side" link="/event" >
+                    <div>
+                        <Icons IconType="backIcon" />
+                        Back to HomeEvent
+                    </div>
+                </NavigationItem>
+            );
+            area2 = (
+                <NavigationItem type="Side" link="/event/newEvent" >
+                    <div>
+                        <Icons IconType="createNew" />
+                        Create new event
+                    </div>
+                </NavigationItem>
+            );
+            break;
         default:
             //do nothing
             break;
