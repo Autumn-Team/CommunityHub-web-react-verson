@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
 import classes from './NewEvent.module.css';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import { updateObject, checkValidity } from '../../../sharedFunctions/utility';
+import * as actions from '../../../store/actions/index';
 
 const NewEvent = props => {
     const [eventForm, setEventForm] = useState({
@@ -111,8 +113,19 @@ const NewEvent = props => {
 
     const newEventSubmitHandler = (event) => {
         event.preventDefault();
+        const formData = {};
+        for (let formElementIdentifier in eventForm){
+            formData[formElementIdentifier] = eventForm[formElementIdentifier].value;
+        }
 
-        props.history.push('/aaaa');
+        const newEvent = {
+            eventData: formData,
+            creatorId: "something",
+        }
+
+        props.onCreateEvent(newEvent);
+        // create new state isSuccess, if yes, redirect, if no, show message
+        //props.history.push('/event');
     }
 
     const discardHandler = () => {
@@ -156,4 +169,10 @@ const NewEvent = props => {
     )
 }
 
-export default NewEvent;
+const mapDispatchToProps = dispatch => {
+    return {
+        onCreateEvent: (eventData) => dispatch(actions.createEvent(eventData)),
+    };
+};
+
+export default connect(null, mapDispatchToProps)(NewEvent);
