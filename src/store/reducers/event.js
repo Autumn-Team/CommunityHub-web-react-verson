@@ -3,11 +3,13 @@ import { updateObject } from '../../sharedFunctions/utility';
 
 const initialState = {
     events: [],
+    loading: false,
     error: null,
 }
 
 const createEventStart = (state, action) => {
     return updateObject(state, {
+        loading: true,
         error: null,
     });
 };
@@ -18,12 +20,14 @@ const createEventSuccess = (state, action) => {
     });
     return updateObject(state, {
         events: state.events.concat(newEvent),
+        loading: false,
         error: 'no error',
     });
 };
 
 const createEventFail = (state, action) => {
     return updateObject(state, {
+        loading: false,
         error: action.error,
     });
 };

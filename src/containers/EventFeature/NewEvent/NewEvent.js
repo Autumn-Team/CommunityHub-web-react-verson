@@ -94,7 +94,7 @@ const NewEvent = props => {
     const [formIsValid, setFormIsValid] =  useState(false);
 
     const [formIsSubmited, setFormIsSubmited] = useState(false);
-
+    
     const inputChangeHandler = (event, inputIdentifier) => {
         const updatedFormElement = updateObject(eventForm[inputIdentifier], {
             value: event.target.value,
@@ -127,14 +127,15 @@ const NewEvent = props => {
         }
         
         props.onCreateEvent(newEvent);
+        console.log('before change');
         setFormIsSubmited(true);
+
     }
     
+    console.log('render');
     let errMessage = null;
-    //May need to decrease number of render to 1 (current is 2)
     if (formIsSubmited && props.error === 'no error') {
         errMessage = <Redirect to='/event' />;
-        console.log('no error');
     }
     else if (formIsSubmited && props.error) {
         errMessage = (<p className={classes.errMessage}>{props.error.message}</p>);
@@ -191,6 +192,7 @@ const NewEvent = props => {
 
 const mapStateToProps = state => {
     return {
+        loading: state.event.loading,
         error: state.event.error,
     };
 };
