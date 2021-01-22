@@ -4,6 +4,7 @@ import CreateNew from '../../assets/icons/createNew.jpg';
 import EventIcon from '../../assets/icons/eventIcon.jpg';
 import BackIcon from '../../assets/icons/backIcon.jpg';
 import EditIcon from '../../assets/icons/editIcon.jpg';
+import yourEventIcon from '../../assets/icons/yourEventIcon.jpg';
 import classes from './Icons.module.css';
 
 const Icons = props => {
@@ -21,6 +22,9 @@ const Icons = props => {
             break;
         case ("editIcon"):
             icon = <img src={EditIcon} className={classes.Icons} alt="Edit Icon" />
+            break;
+        case ("yourEventIcon"):
+            icon = <img src={yourEventIcon} className={classes.Icons} alt="your event Icon" />
             break;
         default:
             //do nothing

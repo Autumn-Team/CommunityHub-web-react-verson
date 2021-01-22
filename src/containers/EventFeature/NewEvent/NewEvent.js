@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import classes from './NewEvent.module.css';
 import Input from '../../../components/UI/Input/Input';
@@ -92,6 +93,8 @@ const NewEvent = props => {
     })
     const [formIsValid, setFormIsValid] =  useState(false);
 
+    const [formIsSubmited, setFormIsSubmited] = useState(false);
+
     const inputChangeHandler = (event, inputIdentifier) => {
         const updatedFormElement = updateObject(eventForm[inputIdentifier], {
             value: event.target.value,
@@ -117,16 +120,26 @@ const NewEvent = props => {
         for (let formElementIdentifier in eventForm){
             formData[formElementIdentifier] = eventForm[formElementIdentifier].value;
         }
-
+        
         const newEvent = {
             eventData: formData,
             creatorId: "something",
         }
-
+        
         props.onCreateEvent(newEvent);
-        // create new state isSuccess, if yes, redirect, if no, show message
-        //props.history.push('/event');
+        setFormIsSubmited(true);
     }
+    
+    let errMessage = null;
+    //May need to decrease number of render to 1 (current is 2)
+    if (formIsSubmited && props.error === 'no error') {
+        errMessage = <Redirect to='/event' />;
+        console.log('no error');
+    }
+    else if (formIsSubmited && props.error) {
+        errMessage = (<p className={classes.errMessage}>{props.error.message}</p>);
+    }
+    else errMessage = null;
 
     const discardHandler = () => {
         props.history.goBack();
@@ -153,21 +166,34 @@ const NewEvent = props => {
                     touched={formElement.config.touched}
                     changed={(event) => inputChangeHandler(event, formElement.id)} />
             ))}
-            <div className={classes.ButtonGroup}>
-                <Button btnType="Success" disabled={!formIsValid}>Save</Button>
-                <Button disabled>Add document</Button>
-                <Button clicked={discardHandler}>Discard</Button>
-            </div>
+            
+            
         </form>
     )
+
+    let buttonGroup = (
+        <div className={classes.ButtonGroup}>
+            <Button btnType="Success" clicked={newEventSubmitHandler} disabled={!formIsValid}>Save</Button>
+            <Button disabled>Add document</Button>
+            <Button clicked={discardHandler}>Discard</Button>
+        </div>
+    );
 
     return(
         <div className={classes.NewEvent}>
             <h2>Create new event</h2>
             {form}
+            {errMessage}
+            {buttonGroup}
         </div>
     )
 }
+
+const mapStateToProps = state => {
+    return {
+        error: state.event.error,
+    };
+};
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -175,4 +201,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(NewEvent);
+export default connect(mapStateToProps, mapDispatchToProps)(NewEvent);

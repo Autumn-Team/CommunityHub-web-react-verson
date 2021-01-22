@@ -24,3 +24,9 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+.errMessage {
+    text-align: center;
+    color: red;
+    font-size: 28px;
+}

@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import classes from './MainEventPage.module.css';
 import SideNavBar from '../../../components/Navigation/SideNavBar/SideNavBar';
 import Event from '../../../components/Event/Event';
+// import * as actions from '../../../store/actions/index';
 
-const MainEventPage = () => {
+const MainEventPage = props => {
+
     const location = useLocation();
 
     let h2Title = <h2>Next Event</h2>;
     let sideNav = <SideNavBar featureType="MainEvent" />;
-    if(location.pathname === "/event/eventList"){
-        h2Title = <h2>List Event</h2>;
-        sideNav = <SideNavBar featureType="EventList" />;
+    if(location.pathname === "/event/attendingEvent"){
+        h2Title = <h2>Attending Events List</h2>;
+        sideNav = <SideNavBar featureType="attendingEvent" />;
+    }
+    if (location.pathname === "/event/yourEvent"){
+        h2Title = <h2>Your Created Event</h2>;
+        sideNav = <SideNavBar featureType="yourEvent" />;
     }
 
     return (
@@ -31,4 +38,16 @@ const MainEventPage = () => {
     )
 }
 
-export default MainEventPage;
+const mapStateToProps = state => {
+    return {
+        error: state.event.error,
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainEventPage);

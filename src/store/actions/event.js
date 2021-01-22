@@ -24,7 +24,7 @@ export const createEventStart = () => {
 
 export const createEvent = (eventData) => {
     return dispatch => {
-        //dispatch(createEventStart());
+        dispatch(createEventStart());
         axios.post('/events.json', eventData)
             .then(response => {
                 dispatch(createEventSuccess(response.data.name, eventData));
@@ -34,3 +34,43 @@ export const createEvent = (eventData) => {
             });
     };
 };
+
+export const fetchEventStart = () => {
+    return {
+        type: actionTypes.FETCH_EVENT_START,
+    };
+};
+
+export const fetchEventSuccess = (events) => {
+    return {
+        type: actionTypes.FETCH_EVENT_SUCCESS,
+        events: events,
+    };
+};
+
+export const fetchEventFail = (error) => {
+    return {
+        type: actionTypes.FETCH_EVENT_FAIL,
+        error: error,
+    };
+};
+
+export const fetchEvents = () => {
+    return dispatch => {
+        dispatch(fetchEventStart());
+        axios.get('/events.json')
+            .then(response => {
+                const fetchData = [];
+                for (let key in response.data) {
+                    fetchData.push({
+                        ...response.data[key],
+                        id: key,
+                    });
+                };
+                dispatch(fetchEventSuccess(fetchData));
+            })
+            .catch(error => {
+                dispatch(fetchEventFail());
+            })
+    }
+}
