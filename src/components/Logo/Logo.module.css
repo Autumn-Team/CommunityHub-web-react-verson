@@ -1,0 +1,10 @@
+.Logo {
+    background-color: inherit;
+    padding-left: 101px;
+    position: absolute;
+}
+
+.Logo img {
+    height: 18%;
+    width: 12%;
+}

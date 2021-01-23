@@ -1,0 +1,41 @@
+.Button {
+    color: white;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    width: 25%;
+    margin-top: 20px;
+}
+
+.Success {
+    background-color: rgb(110, 173, 214);
+    color: rgb(56, 54, 54);
+}
+
+.Link {
+    color: rgb(103, 103, 233);
+    border: none;
+    background-color: inherit;
+    width: auto;
+    padding: 0px;
+}
+
+.Social {
+    width: auto;
+    height: auto;
+    background-color: white;
+}
+
+.Danger {
+    color: red;
+    
+}
+
+.Button:disabled {
+    background-color: darkgray;
+    color: white;
+    cursor: not-allowed;
+}
