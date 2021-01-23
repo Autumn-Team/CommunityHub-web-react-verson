@@ -6,6 +6,7 @@ import classes from './NewEvent.module.css';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import { updateObject, checkValidity } from '../../../sharedFunctions/utility';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 import * as actions from '../../../store/actions/index';
 
 const NewEvent = props => {
@@ -92,8 +93,6 @@ const NewEvent = props => {
         },
     })
     const [formIsValid, setFormIsValid] =  useState(false);
-
-    const [formIsSubmited, setFormIsSubmited] = useState(false);
     
     const inputChangeHandler = (event, inputIdentifier) => {
         const updatedFormElement = updateObject(eventForm[inputIdentifier], {
@@ -127,24 +126,20 @@ const NewEvent = props => {
         }
         
         props.onCreateEvent(newEvent);
-        console.log('before change');
-        setFormIsSubmited(true);
-
     }
     
-    console.log('render');
-    let errMessage = null;
-    if (formIsSubmited && props.error === 'no error') {
-        errMessage = <Redirect to='/event' />;
-    }
-    else if (formIsSubmited && props.error) {
-        errMessage = (<p className={classes.errMessage}>{props.error.message}</p>);
-    }
-    else errMessage = null;
-
     const discardHandler = () => {
         props.history.goBack();
     }
+
+    let errMessage = null;
+    if (props.error === 'no error') {
+        errMessage = <Redirect to='/event' />;
+    }
+    else if (props.error) {
+        errMessage = (<p className={classes.errMessage}>{props.error.message}</p>);
+    }
+    else errMessage = null;
 
     const fromElementArray = [];
     for (let key in eventForm){
@@ -155,38 +150,39 @@ const NewEvent = props => {
     }
 
     let form = (
-        <form onSubmit={newEventSubmitHandler}>
-            {fromElementArray.map(formElement => (
-                <Input
-                    key={formElement.id}
-                    label={formElement.config.label}
-                    elementType={formElement.config.elementType}
-                    elementConfig = {formElement.config.elementConfig}
-                    value={formElement.config.value}
-                    valid={formElement.config.valid}
-                    touched={formElement.config.touched}
-                    changed={(event) => inputChangeHandler(event, formElement.id)} />
-            ))}
-            
-            
-        </form>
-    )
-
-    let buttonGroup = (
-        <div className={classes.ButtonGroup}>
-            <Button btnType="Success" clicked={newEventSubmitHandler} disabled={!formIsValid}>Save</Button>
-            <Button disabled>Add document</Button>
-            <Button clicked={discardHandler}>Discard</Button>
+        <div>
+            <form onSubmit={newEventSubmitHandler}>
+                {fromElementArray.map(formElement => (
+                    <Input
+                        key={formElement.id}
+                        label={formElement.config.label}
+                        elementType={formElement.config.elementType}
+                        elementConfig = {formElement.config.elementConfig}
+                        value={formElement.config.value}
+                        valid={formElement.config.valid}
+                        touched={formElement.config.touched}
+                        changed={(event) => inputChangeHandler(event, formElement.id)} />
+                ))}         
+            </form>
+            {errMessage}
+            <div className={classes.ButtonGroup}>
+                <Button btnType="Success" clicked={newEventSubmitHandler} disabled={!formIsValid}>Save</Button>
+                <Button disabled>Add document</Button>
+                <Button clicked={discardHandler}>Discard</Button>
+            </div>
         </div>
     );
 
+    if (props.loading) {
+        form = <Spinner />;
+    }
+    
+
     return(
-        <div className={classes.NewEvent}>
+        <section className={classes.NewEvent}>
             <h2>Create new event</h2>
             {form}
-            {errMessage}
-            {buttonGroup}
-        </div>
+        </section>
     )
 }
 

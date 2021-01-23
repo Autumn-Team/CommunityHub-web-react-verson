@@ -17,3 +17,13 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.Empty {
+    margin: 150px auto 200px;
+}
+
+.errMessage {
+    margin: 130px auto 200px;
+    color: red;
+    font-size: 28px;
+}
