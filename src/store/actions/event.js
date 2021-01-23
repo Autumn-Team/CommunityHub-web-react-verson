@@ -70,7 +70,7 @@ export const fetchEvents = () => {
                 dispatch(fetchEventSuccess(fetchData));
             })
             .catch(error => {
-                dispatch(fetchEventFail());
+                dispatch(fetchEventFail(error));
             })
     }
 }
