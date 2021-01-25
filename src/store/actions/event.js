@@ -67,7 +67,8 @@ export const fetchEvents = () => {
                         id: key,
                     });
                 };
-                dispatch(fetchEventSuccess(fetchData));
+                const reverseData = fetchData.reverse();
+                dispatch(fetchEventSuccess(reverseData));
             })
             .catch(error => {
                 dispatch(fetchEventFail(error));
