@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
 import classes from './NewEvent.module.css';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import { updateObject, checkValidity } from '../../../sharedFunctions/utility';
 import Spinner from '../../../components/UI/Spinner/Spinner';
+import axios from '../../../axios-instance';
+import errorHandler from '../../../sharedFunctions/errorHandler';
 import * as actions from '../../../store/actions/index';
 
 const NewEvent = props => {
@@ -130,16 +131,12 @@ const NewEvent = props => {
     
     const discardHandler = () => {
         props.history.goBack();
+       
     }
 
-    let errMessage = null;
     if (props.error === 'no error') {
-        errMessage = <Redirect to='/event' />;
+        props.history.push('/event');
     }
-    else if (props.error) {
-        errMessage = (<p className={classes.errMessage}>{props.error.message}</p>);
-    }
-    else errMessage = null;
 
     const fromElementArray = [];
     for (let key in eventForm){
@@ -164,7 +161,6 @@ const NewEvent = props => {
                         changed={(event) => inputChangeHandler(event, formElement.id)} />
                 ))}         
             </form>
-            {errMessage}
             <div className={classes.ButtonGroup}>
                 <Button btnType="Success" clicked={newEventSubmitHandler} disabled={!formIsValid}>Save</Button>
                 <Button disabled>Add document</Button>
@@ -177,7 +173,6 @@ const NewEvent = props => {
         form = <Spinner />;
     }
     
-
     return(
         <section className={classes.NewEvent}>
             <h2>Create new event</h2>
@@ -199,4 +194,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewEvent);
+export default connect(mapStateToProps, mapDispatchToProps)( errorHandler(NewEvent,axios));
