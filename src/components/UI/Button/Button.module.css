@@ -21,6 +21,11 @@
     width: auto;
     padding: 0px;
 }
+.Link:hover {
+    color: rgb(0, 0, 165);
+    font-weight: bold;
+    text-decoration: underline;
+}
 
 .Social {
     width: auto;

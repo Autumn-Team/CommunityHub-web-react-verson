@@ -1,9 +1,28 @@
 import React from 'react';
 
 import classes from './Event.module.css';
+import Button from '../UI/Button/Button';
 
 const Event = props => {
     
+    const seeMore = <Button btnType='Link' clicked={props.seeMoreClicked}>See more</Button>;
+    let eventButton = null;
+
+    switch(props.eventType){
+        case 'event':
+            eventButton = null;
+            break;
+        case 'attendingEvent':
+            eventButton = <Button btnType='Link' clicked={props.removeClicked}>Remove</Button>;
+            break;
+        case 'yourEvent':
+            eventButton = <Button btnType='Link' clicked={props.deleteClicked}>Delete</Button>;
+            break;
+        default:
+            // do nothing
+            break;
+    }
+
     return (
         <div className={classes.Event}>
             <div className={classes.Cover}>cover</div>
@@ -11,7 +30,8 @@ const Event = props => {
             <h4>{props.title}</h4>
             <div className={classes.Location}>{props.location}</div>
             <div className={classes.Button}>
-                remove and See more
+                <div>{eventButton}</div>
+                <div>{seeMore}</div>
             </div>
         </div>
     );

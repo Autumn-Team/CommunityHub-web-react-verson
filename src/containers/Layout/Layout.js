@@ -7,15 +7,23 @@ import NavBar from '../../components/Navigation/MainNavBar/NavBar';
 
 const Layout = props =>  {
     const location = useLocation();
+
     let navBar = null;
-    if(location.pathname !== "/"){
+    let cssClass = null;
+
+    if(location.pathname === "/"){
+        navBar = null;
+        cssClass = classes.Content1;
+    }
+    else {
         navBar = <NavBar />;
+        cssClass = classes.Content2;
     }
 
     return (
         <React.Fragment>
             {navBar}
-            <main className={classes.Content}>
+            <main className={cssClass}>
                 {props.children}
             </main>
             <Footer />

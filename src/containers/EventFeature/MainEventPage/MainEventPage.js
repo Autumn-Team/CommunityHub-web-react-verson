@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -11,16 +11,43 @@ import * as actions from '../../../store/actions/index';
 const MainEventPage = props => {
 
     const location = useLocation();
-
     const { onFetchEvents } = props;
 
     useEffect(() =>{
         onFetchEvents();
-    }, [onFetchEvents]);
+    }, [onFetchEvents, location]);
 
-    let h2Title = <h2>Next Event</h2>;
-    let sideNav = <SideNavBar featureType="MainEvent" />;
-    let events = <Spinner />;
+    let h2Title = null;
+    let sideNav = null;
+    let events = null;
+    let eventType = null;
+
+    switch (location.pathname) {
+        case "/event":
+            h2Title = <h2>Next Event</h2>;
+            sideNav = <SideNavBar featureType="MainEvent" />;
+            events = <Spinner />;
+            eventType = "event";
+            break;
+        case "/event/attendingEvent":
+            h2Title = <h2>Attending Events List</h2>;
+            sideNav = <SideNavBar featureType="attendingEvent" />;
+            events = <Spinner />;
+            eventType = "attendingEvent";
+            break;
+        case "/event/yourEvent":
+            h2Title = <h2>Your Created Event</h2>;
+            sideNav = <SideNavBar featureType="yourEvent" />;
+            events = <Spinner />;
+            eventType = "yourEvent";
+            break;
+        default:
+            h2Title = null;
+            sideNav = null;
+            events = null;
+            eventType = null;
+            break;
+    }
 
     if (!props.loading) {
         events = props.error ? 
@@ -29,21 +56,11 @@ const MainEventPage = props => {
                 <Event key={currentEvent.id} 
                 date={currentEvent.eventData.date} 
                 title={currentEvent.eventData.title} 
-                location={currentEvent.eventData.location} />
+                location={currentEvent.eventData.location}
+                eventType={eventType} />
             )));
         
         if (events.length === 0) events = <p className={classes.Empty}>There is no event at the moment</p>;  
-    }
-
-    if(location.pathname === "/event/attendingEvent"){
-        h2Title = <h2>Attending Events List</h2>;
-        sideNav = <SideNavBar featureType="attendingEvent" />;
-        events = null;
-    }
-    if (location.pathname === "/event/yourEvent"){
-        h2Title = <h2>Your Created Event</h2>;
-        sideNav = <SideNavBar featureType="yourEvent" />;
-        events = null;
     }
 
     return (
