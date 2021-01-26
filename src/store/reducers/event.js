@@ -3,6 +3,7 @@ import { updateObject } from '../../sharedFunctions/utility';
 
 const initialState = {
     events: [],
+    fullEvent: null,
     loading: false,
     error: null,
 }
@@ -54,6 +55,30 @@ const fetchEventFail = (state, action) => {
     });
 };
 
+const fetchFullEventStart = (state, action) => {
+    return updateObject(state, {
+        fullEvent: null,
+        loading: true,
+        error: null,
+    });
+};
+
+const fetchFullEventSuccess = (state, action) => {
+    return updateObject(state, {
+        fullEvent: action.fullEvent,
+        loading: false,
+        error: null,
+    });
+};
+
+const fetchFullEventFail = (state, action) => {
+    return updateObject(state, {
+        fullEvent: null,
+        loading: false,
+        error: action.error,
+    });
+};
+
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -63,6 +88,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_EVENT_START: return fetchEventStart(state, action);
         case actionTypes.FETCH_EVENT_SUCCESS: return fetchEventSuccess(state, action);
         case actionTypes.FETCH_EVENT_FAIL: return fetchEventFail(state, action);
+        case actionTypes.FETCH_FULL_EVENT_START: return fetchFullEventStart(state, action);
+        case actionTypes.FETCH_FULL_EVENT_SUCCESS: return fetchFullEventSuccess(state, action);
+        case actionTypes.FETCH_FULL_EVENT_FAIL: return fetchFullEventFail(state, action);
         default: return state;
 
     }

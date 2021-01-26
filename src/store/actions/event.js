@@ -75,3 +75,37 @@ export const fetchEvents = () => {
             })
     }
 }
+
+export const fetchFullEventStart = () => {
+    return {
+        type: actionTypes.FETCH_FULL_EVENT_START,
+    };
+};
+
+export const fetchFullEventSuccess = (fullEvent) => {
+    return {
+        type: actionTypes.FETCH_FULL_EVENT_SUCCESS,
+        fullEvent: fullEvent,
+    };
+};
+
+export const fetchFullEventFail = (error) => {
+    return {
+        type: actionTypes.FETCH_FULL_EVENT_FAIL,
+        error: error,
+    };
+};
+
+export const fetchFullEvent = (id) => {
+    return dispatch => {
+        dispatch(fetchFullEventStart());
+        axios.get(`/events/${id}.json`)
+            .then(response => {
+                const fetchData = {...response.data};
+                dispatch(fetchFullEventSuccess(fetchData));
+            })
+            .catch(error => {
+                dispatch(fetchFullEventFail(error));
+            })
+    }
+}

@@ -27,7 +27,7 @@ const Event = props => {
         <div className={classes.Event}>
             <div className={classes.Cover}>cover</div>
             <div className={classes.Date}>{props.date}</div>
-            <h4>{props.title}</h4>
+            <h4 onClick={props.seeMoreClicked}>{props.title}</h4>
             <div className={classes.Location}>{props.location}</div>
             <div className={classes.Button}>
                 <div>{eventButton}</div>

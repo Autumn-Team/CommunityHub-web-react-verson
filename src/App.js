@@ -18,7 +18,7 @@ const App = props =>  {
                 <Route path="/event/newEvent" component={NewEvent} />
                 <Route path="/event/yourEvent" exact component={Event} />
                 <Route path="/event/attendingEvent" exact component={Event} />
-                <Route path="/test" component={EventDetails} />
+                <Route path="/event/:eventId" exact component={EventDetails} />
             </Switch>
         </Layout>
     )

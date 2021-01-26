@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -49,6 +49,11 @@ const MainEventPage = props => {
             break;
     }
 
+    const seeMoreClickedHandler = (eventId) => {
+        props.history.push('/event/' + eventId);
+    }
+
+
     if (!props.loading) {
         events = props.error ? 
             (<p className={classes.errMessage}>{props.error.message}</p>) : 
@@ -57,7 +62,8 @@ const MainEventPage = props => {
                 date={currentEvent.eventData.date} 
                 title={currentEvent.eventData.title} 
                 location={currentEvent.eventData.location}
-                eventType={eventType} />
+                eventType={eventType}
+                seeMoreClicked= {() => seeMoreClickedHandler(currentEvent.id)} />
             )));
         
         if (events.length === 0) events = <p className={classes.Empty}>There is no event at the moment</p>;  

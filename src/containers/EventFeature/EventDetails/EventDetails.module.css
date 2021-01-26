@@ -32,6 +32,12 @@
     width: 25vw;
     height: auto;
     padding: 10px 15px;
+    font-size: 16px;
+}
+
+.Text h4 {
+    margin: 10px 0px;
+    font-size: 20px;
 }
 
 .Map {
@@ -41,4 +47,10 @@
 
 .SuggestionEvent {
     text-align: center;
+}
+
+.errMessage {
+    margin: 130px auto 200px;
+    color: red;
+    font-size: 28px;
 }
