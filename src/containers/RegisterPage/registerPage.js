@@ -2,19 +2,17 @@ import React, { useState } from 'react';
 
 import classes from './Register.module.css';
 import Logo from '../../components/Logo/Logo';
-import Banner from '../../components/Banner/Banner';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
-import SocialImage from '../../components/SocialImage/SocialImage';
 
 const Register = props => {
     const [formStructure, setFormStructure] = useState({
-        Username: {
-            label: 'Name: ',
+        Fullname: {
+            label: 'Full Name: ',
             elementType: 'input',
             elementConfig: {
-                text: 'email',
-                placeholder: 'Please enter your name',
+                type: 'text',
+                placeholder: 'Please enter your full name',
             },
             value: '',
             validation: {
@@ -27,7 +25,7 @@ const Register = props => {
             label: 'Email: ',
             elementType: 'input',
             elementConfig: {
-                text: 'email',
+                type: 'email',
                 placeholder: 'Please enter your email',
             },
             value: '',
@@ -41,13 +39,11 @@ const Register = props => {
             label: 'Address: ',
             elementType: 'input',
         elementConfig: {
-            text: 'address',
+            type: 'text',
             placeholder: 'Please enter your address',
         },
         value:'',
-        validation: {
-            required: true,
-        },
+        validation: {},
         valid: false,
         touched: false,
         },
@@ -55,7 +51,7 @@ const Register = props => {
             label: 'Phone: ',
             elementType: 'input',
         elementConfig: {
-            text: 'phone',
+            type: 'number',
             placeholder: 'Please enter your phone number',
         },
         value:'',
@@ -69,7 +65,7 @@ const Register = props => {
             label: 'Password: ',
             elementType: 'input',
             elementConfig: {
-                text: 'password',
+                type: 'password',
                 placeholder: 'Please enter your password',
             },
             value: '',
@@ -83,7 +79,7 @@ const Register = props => {
             label: 'Confirm Password: ',
             elementType: 'input',
             elementConfig: {
-                text: 'password',
+                type: 'password',
                 placeholder: 'Please re-enter your password',
             },
             value: '',
@@ -156,17 +152,13 @@ const Register = props => {
     return (
         <React.Fragment>
             <Logo />
-            <Banner/>   
+            <h2>REGISTER</h2>  
             <div className={classes.Form}>
                 {form}
             </div>
+            <h4>OR</h4>
+            <div className={classes.Register}><Button btnType="Link">Log in here</Button></div>
             
-            <div className={classes.Register}><Button btnType="Link">Log in here</Button> or use social media</div>
-            <div className={classes.Social}>
-                <Button btnType="Social" disabled={false}><SocialImage ImageType="facebook" /></Button>
-                <Button btnType="Social" disabled={false}><SocialImage ImageType="twitter" /></Button>
-                <Button btnType="Social" disabled={false}><SocialImage ImageType="google" /></Button>
-            </div>
         </React.Fragment>
     );
 }

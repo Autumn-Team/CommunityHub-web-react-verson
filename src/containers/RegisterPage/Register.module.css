@@ -15,22 +15,17 @@
     
 }
 
-.Or {
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-}
-
 .Register {
     text-align: center;
     font-size: 20px;
 }
 
-.Social {
-    margin: 15px auto 0px;
+h2 {
     text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 32%;
+    margin-top: 10px;
+    padding-top: 24px;
+    padding-bottom: 20px;
+}
+h4 {
+    text-align: center;
 }
