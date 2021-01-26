@@ -11,7 +11,7 @@ const Layout = props =>  {
     let navBar = null;
     let cssClass = null;
 
-    if(location.pathname === "/"){
+    if(location.pathname === "/" || location.pathname === "/register"){
         navBar = null;
         cssClass = classes.Content1;
     }

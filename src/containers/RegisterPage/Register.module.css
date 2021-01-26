@@ -1,0 +1,31 @@
+.Form {
+    margin: 15px auto 10px;
+    width: 40%;
+    text-align: center;
+    box-shadow: 0 1px 2px #ccc;
+    border: 2px solid #eee;
+    padding: 15px 0px 15px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.Link {
+    margin: 0px  0vw 20px 11.5vw;
+    text-align: start;
+    
+}
+
+.Register {
+    text-align: center;
+    font-size: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 10px;
+    padding-top: 24px;
+    padding-bottom: 20px;
+}
+h4 {
+    text-align: center;
+}
