@@ -68,6 +68,10 @@ const Login = props => {
         props.history.push('/homePage');
     }
 
+    const registerEventHandler = () => {
+        props.history.push('/register');
+    }
+
     //get form info in state
     const formElementArray = [];
     for (let element in loginForm){
@@ -79,9 +83,10 @@ const Login = props => {
 
     //create form components
     let form = (
-        <form onSubmit={loginEventHandler}>
-            {formElementArray.map(element => (
-                <Input
+        <div className={classes.Form}>
+            <form onSubmit={loginEventHandler}>
+                {formElementArray.map(element => (
+                    <Input
                     key={element.id}
                     label={element.config.label}
                     elementType={element.config.elementType}
@@ -90,20 +95,20 @@ const Login = props => {
                     valid={element.config.valid}
                     touched={element.config.touched}
                     changed={(event) => inputChangedHandler(event, element.id)} />
-            ))}
+                    ))}
+            </form>
             <div className={classes.Link}><Button btnType="Link">Forgot Password</Button></div>
-            <Button btnType="Success" disabled={!formIsValid}>LOGIN</Button>
-        </form>
+            <Button btnType="Success" disabled={!formIsValid} clicked={loginEventHandler}>LOGIN</Button>
+        </div>
     );
 
     return (
         <React.Fragment>
             <Logo />
-            <div className={classes.Form}>
-                {form}
-            </div>
+            {form}
             <div className={classes.Or}>OR</div>
-            <div className={classes.Register}><Button btnType="Link">Register here</Button> or use social media</div>
+            <div className={classes.Register}>
+                <Button btnType="Link" clicked={registerEventHandler}>Register here</Button> or use social media</div>
             <div className={classes.Social}>
                 <Button btnType="Social" disabled={false}><SocialImage ImageType="facebook" /></Button>
                 <Button btnType="Social" disabled={false}><SocialImage ImageType="twitter" /></Button>
