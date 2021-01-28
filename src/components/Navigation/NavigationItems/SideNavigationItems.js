@@ -53,14 +53,7 @@ const SideNavigationItems = props => {
                     </div>
                 </NavigationItem>
             );
-            area3 = (
-                <NavigationItem type="Side" link="/event/newEvent" >
-                    <div>
-                        <Icons IconType="createNew" />
-                        Create new event
-                    </div>
-                </NavigationItem>
-            );
+            area3 = null;
             break;
         case ('attendingEvent'):
             area1 = (

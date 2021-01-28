@@ -15,7 +15,7 @@ const EventDetails = props => {
     },[onFetchFullEvents, props.match.params.eventId]);
     
     console.log(props.fullEvent);
-    let fullEvent = <div className={classes.Loading} ><Spinner /></div>;
+    let fullEvent = <div className={classes.EventDetails} ><Spinner /></div>;
 
     if (!props.loading) {
         if (props.fullEvent) {

@@ -2,6 +2,8 @@ import React from 'react';
 
 import classes from './SideNavBar.module.css';
 import SideNavigationItems from '../NavigationItems/SideNavigationItems';
+import Button from '../../UI/Button/Button';
+import Icon from '../../Icons/Icons';
 
 const SideNavBar = props => {
     let nav = null;
@@ -17,9 +19,19 @@ const SideNavBar = props => {
         case ('DetailedEvent'):
             nav = <nav className={classes.SideNavBar}>
                 <SideNavigationItems featureType={props.featureType} />
+                <div>
+                    <Icon IconType="eventAccept"/>
+                    Delete
+                </div>
                 <div>Information</div>
-                <div>btn1</div>
-                <div>btn2</div>
+                <div>
+                    <Icon IconType="eventAccept"/>
+                    <Button btnType="Blacklink">Attended</Button>
+                </div>
+                <div>
+                    <Icon IconType="eventDeny"/>
+                    <Button btnType="Blacklink">Unsure</Button>
+                </div>
             </nav>
             break;
         case ('attendingEvent'):

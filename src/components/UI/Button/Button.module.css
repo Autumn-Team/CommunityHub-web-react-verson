@@ -21,11 +21,28 @@
     width: auto;
     padding: 0px;
 }
+
 .Link:hover {
     color: rgb(0, 0, 165);
     font-weight: bold;
     text-decoration: underline;
 }
+
+.Blacklink {
+    color: inherit;
+    border: none;
+    background-color: inherit;
+    width: auto;
+    padding: 0px;
+}
+
+.Blacklink:hover {
+    color: black;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+
 
 .Social {
     width: auto;
