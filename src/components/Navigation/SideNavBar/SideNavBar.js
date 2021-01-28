@@ -19,9 +19,19 @@ const SideNavBar = props => {
         case ('DetailedEvent'):
             nav = <nav className={classes.SideNavBar}>
                 <SideNavigationItems featureType={props.featureType} />
+                <div>
+                    <Icon IconType="eventAccept"/>
+                    Delete
+                </div>
                 <div>Information</div>
-                <div><Button btnType="Link"><Icon IconType="eventAccept"/>Attended</Button></div>
-                <div><Button btnType="Link"><Icon IconType="eventDeny"/>Unsure</Button></div>
+                <div>
+                    <Icon IconType="eventAccept"/>
+                    <Button btnType="Blacklink">Attended</Button>
+                </div>
+                <div>
+                    <Icon IconType="eventDeny"/>
+                    <Button btnType="Blacklink">Unsure</Button>
+                </div>
             </nav>
             break;
         case ('attendingEvent'):
