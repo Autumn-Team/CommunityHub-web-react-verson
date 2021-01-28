@@ -20,12 +20,15 @@
     font-size: 20px;
 }
 
-h2 {
+.Title {
     text-align: center;
     margin-top: 10px;
     padding-top: 24px;
     padding-bottom: 20px;
 }
-h4 {
+.Or {
     text-align: center;
+}
+.RLogo {
+    position: absolute;
 }
