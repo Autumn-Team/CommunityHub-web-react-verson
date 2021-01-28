@@ -151,12 +151,12 @@ const Register = props => {
 
     return (
         <React.Fragment>
-            <Logo />
-            <h2>REGISTER</h2>  
+            <div className={classes.RLogo}><Logo /></div>
+            <h2 className={classes.Title}>REGISTER</h2>  
             <div className={classes.Form}>
                 {form}
             </div>
-            <h4>OR</h4>
+            <h4 className={classes.Or}>OR</h4>
             <div className={classes.Register}><Button btnType="Link">Log in here</Button></div>
             
         </React.Fragment>
