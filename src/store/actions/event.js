@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import axios from '../../axios-instance';
+import { instance as axios }  from '../../axios-instance';
 
 export const createEventSuccess = (id, eventData) => {
     return {

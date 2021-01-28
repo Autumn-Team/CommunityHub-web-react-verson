@@ -4,4 +4,12 @@ const instance = axios.create({
     baseURL: 'https://summer-project-dac31-default-rtdb.firebaseio.com/'
 });
 
-export default instance;
+const login = axios.create({
+    baseURL: ''
+});
+
+const register = axios.create({
+    baseURL: ''
+})
+
+export { instance, login, register };
