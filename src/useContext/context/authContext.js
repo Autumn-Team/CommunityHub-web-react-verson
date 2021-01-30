@@ -1,19 +1,14 @@
 import React from 'react';
-
-const initialState = {
-    token: null,
-    userId: null,
-    loading: false,
-    error: null,
-};
+import { initialState, AuthReducer } from '../reducer/auth';
 
 
-export const AuthContext = React.createContext(initialState);
+const AuthStateContext = React.createContext();
+const AuthDispatchContext = React.createContext();
+
+
 
 export const AuthProvider = props => {
-    return (
-        <AuthContext.Provider value={initialState}>
-            {props.children}
-        </AuthContext.Provider>
-    )
+    return (<></>
+        
+    );
 }
