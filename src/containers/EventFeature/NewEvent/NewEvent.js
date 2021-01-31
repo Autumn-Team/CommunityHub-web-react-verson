@@ -6,7 +6,7 @@ import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import { updateObject, checkValidity } from '../../../sharedFunctions/utility';
 import Spinner from '../../../components/UI/Spinner/Spinner';
-import axios from '../../../axios-instance';
+import {instance as axios} from '../../../axios-instance';
 import errorHandler from '../../../sharedFunctions/errorHandler';
 import * as actions from '../../../store/actions/index';
 

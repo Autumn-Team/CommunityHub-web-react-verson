@@ -8,6 +8,7 @@ import SocialImage from '../../components/SocialImage/SocialImage';
 import { updateObject, checkValidity } from '../../sharedFunctions/utility';
 
 const Login = props => {
+    console.log(props);
     const [loginForm, setLoginForm] = useState({
         Username: {
             label: 'Username: ',
