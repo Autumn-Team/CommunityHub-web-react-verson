@@ -5,11 +5,11 @@ const instance = axios.create({
 });
 
 const login = axios.create({
-    baseURL: ''
+    baseURL: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC5fqq3CBZKwNYzWsispuuyL3drcbDgvAY'
 });
 
 const register = axios.create({
-    baseURL: ''
+    baseURL: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyC5fqq3CBZKwNYzWsispuuyL3drcbDgvAY'
 })
 
 export { instance, login, register };
