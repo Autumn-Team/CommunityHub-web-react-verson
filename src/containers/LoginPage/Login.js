@@ -5,10 +5,11 @@ import Logo from '../../components/Logo/Logo';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import SocialImage from '../../components/SocialImage/SocialImage';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import { updateObject, checkValidity } from '../../sharedFunctions/utility';
+import { authLogin, useAuthState, useAuthDispatch } from '../../useContext/index';
 
 const Login = props => {
-    console.log(props);
     const [loginForm, setLoginForm] = useState({
         Username: {
             label: 'Username: ',
@@ -42,7 +43,9 @@ const Login = props => {
     });
     const [formIsValid, setFormIsValid] = useState(false);
 
-    
+    const { token, loading, error } = useAuthState();
+    const dispatch = useAuthDispatch();
+
     const inputChangedHandler = (event, inputIdenfifier) => {
         const updatedFormElement = updateObject(loginForm[inputIdenfifier], {
             value: event.target.value,
@@ -66,7 +69,7 @@ const Login = props => {
     const loginEventHandler = (event) => {
         event.preventDefault();
         //handle event
-        props.history.push('/homePage');
+        authLogin(dispatch, loginForm.Username.value, loginForm.Password.value);
     }
 
     const registerEventHandler = () => {
@@ -103,10 +106,24 @@ const Login = props => {
         </div>
     );
 
+    if (loading) {
+        form = <Spinner />;
+    }
+
+    let errorMessage = null;
+    if (error) {
+        errorMessage = (<p>{error.message}</p>);
+    }
+
+    if (token) {
+        props.history.push('/homePage');
+    }
+
     return (
         <React.Fragment>
             <Logo />
             {form}
+            {errorMessage}
             <div className={classes.Or}>OR</div>
             <div className={classes.Register}>
                 <Button btnType="Link" clicked={registerEventHandler}>Register here</Button> or use social media</div>
