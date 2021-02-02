@@ -5,7 +5,7 @@ export const updateObject = (oldObject, updatedProperties) => {
     }
 }
 
-export const checkValidity = (value, rules) => {
+export const checkValidity = (value, rules, CValue1, CValue2) => {
     let isValid = true;
 
     if (rules.required){
@@ -31,7 +31,12 @@ export const checkValidity = (value, rules) => {
         const pattern = /^\d+$/;
         isValid = pattern.test(value) && isValid
     }
-    //More rules here
+    if (rules.comparedPass){
+        isValid = (value === CValue1) && isValid
+    }
+    if (rules.comparedCPass && CValue2 !== ''){
+        isValid = (value === CValue2) && isValid
+    }
 
     return isValid;
 }

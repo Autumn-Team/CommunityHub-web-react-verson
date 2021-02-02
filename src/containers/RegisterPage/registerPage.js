@@ -5,6 +5,7 @@ import Logo from '../../components/Logo/Logo';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import { updateObject, checkValidity} from '../../sharedFunctions/utility';
 import { authRegister, useAuthState, useAuthDispatch  } from '../../useContext/index';
 
 const Register = props => {
@@ -33,6 +34,7 @@ const Register = props => {
             value: '',
             validation: {
                 required: true,
+                isEmail: true,
             },
             valid: false,
             touched: false,
@@ -73,6 +75,7 @@ const Register = props => {
             value: '',
             validation: {
                 required: true,
+                comparedCPass: true,
             },
             valid: false,
             touched: false,
@@ -87,6 +90,7 @@ const Register = props => {
             value: '',
             validation: {
                 required: true,
+                comparedPass: true,
             },
             valid: false,
             touched: false,
@@ -97,24 +101,16 @@ const Register = props => {
     const { token, loading, error } = useAuthState();
     const dispatch = useAuthDispatch();
 
-    const checkValidity = (value, rules) => {
-        let isValid = true;
-
-        if (rules.required){
-            isValid = value.trim() !== '' && isValid;
-        }
-        //More rules here
-
-        return isValid;
-    }
-
     const inputChangedHandler = (event, inputIdenfifier) => {
-        const updatedForm = {...formStructure};
-        const updatedFormElement = {...updatedForm[inputIdenfifier]};
-        updatedFormElement.value = event.target.value;
-        updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation);
-        updatedFormElement.touched = true;
-        updatedForm[inputIdenfifier] = updatedFormElement;
+        const updatedFormElement = updateObject(formStructure[inputIdenfifier], {
+            value: event.target.value,
+            valid: checkValidity(event.target.value, formStructure[inputIdenfifier].validation, 
+                formStructure.Password.value, formStructure.ConfirmPassword.value),
+            touched: true,
+        })
+        const updatedForm = updateObject(formStructure, {
+            [inputIdenfifier] : updatedFormElement,
+        })
 
         // Check validity of all element
         let checkFormIsValid = true;
@@ -184,7 +180,7 @@ const Register = props => {
                 {form}
             </div>
             <h4 className={classes.Or}>OR</h4>
-            <div className={classes.Register}><Button btnType="Link" clicked={loginEventHandler}>Log in here</Button></div>
+            <div className={classes.Login}><Button btnType="Link" clicked={loginEventHandler}>Log in here</Button></div>
             
         </React.Fragment>
     );

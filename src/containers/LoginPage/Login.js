@@ -49,7 +49,7 @@ const Login = props => {
     const inputChangedHandler = (event, inputIdenfifier) => {
         const updatedFormElement = updateObject(loginForm[inputIdenfifier], {
             value: event.target.value,
-            valid: checkValidity(event.target.value, loginForm[inputIdenfifier].validation),
+            valid: checkValidity(event.target.value, loginForm[inputIdenfifier].validation, null, null),
             touched: true,
         })
         const updatedLoginForm = updateObject(loginForm, {
