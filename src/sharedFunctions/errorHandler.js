@@ -19,9 +19,6 @@ const errorHandler = (WrappedComponent, axios) => {
                 res => res, 
                 err => {
                     setError(err);
-                    console.log("err here 2");
-                    console.log(err);
-                    console.log(error);
             });
             return () => {
                 axios.interceptors.request.eject(reqInterceptor);

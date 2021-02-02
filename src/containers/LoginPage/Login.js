@@ -76,6 +76,11 @@ const Login = props => {
         props.history.push('/register');
     }
 
+    let errorMessage = null;
+    if (error) {
+        errorMessage = (<p className={classes.errorMessage}>{error.message}</p>);
+    }
+
     //get form info in state
     const formElementArray = [];
     for (let element in loginForm){
@@ -102,17 +107,13 @@ const Login = props => {
                     ))}
             </form>
             <div className={classes.Link}><Button btnType="Link">Forgot Password</Button></div>
+            {errorMessage}
             <Button btnType="Success" disabled={!formIsValid} clicked={loginEventHandler}>LOGIN</Button>
         </div>
     );
 
     if (loading) {
         form = <Spinner />;
-    }
-
-    let errorMessage = null;
-    if (error) {
-        errorMessage = (<p>{error.message}</p>);
     }
 
     if (token) {
@@ -123,7 +124,6 @@ const Login = props => {
         <React.Fragment>
             <Logo />
             {form}
-            {errorMessage}
             <div className={classes.Or}>OR</div>
             <div className={classes.Register}>
                 <Button btnType="Link" clicked={registerEventHandler}>Register here</Button> or use social media</div>

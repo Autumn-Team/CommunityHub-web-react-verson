@@ -36,7 +36,11 @@ export const authLogin = (dispatch, email, password) => {
             dispatch(authSuccess(response.data.idToken, response.data.localId));
         })
         .catch(error => {
-            dispatch(authFail(error.response.data.error));
+            if (error.response) {
+                dispatch(authFail(error.response.data.error));
+            }
+            else dispatch(authFail(error));
+            //error.response.data.error
         })
 };
 

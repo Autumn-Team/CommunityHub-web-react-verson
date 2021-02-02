@@ -34,3 +34,7 @@
     justify-content: space-around;
     width: 32%;
 }
+
+.errorMessage {
+    color: red;
+}
