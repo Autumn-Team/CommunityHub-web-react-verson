@@ -4,6 +4,8 @@ import classes from './Register.module.css';
 import Logo from '../../components/Logo/Logo';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import { authRegister, useAuthState, useAuthDispatch  } from '../../useContext/index';
 
 const Register = props => {
     const [formStructure, setFormStructure] = useState({
@@ -92,6 +94,9 @@ const Register = props => {
     });
     const [formIsValid, setFormIsValid] = useState(false);
 
+    const { token, loading, error } = useAuthState();
+    const dispatch = useAuthDispatch();
+
     const checkValidity = (value, rules) => {
         let isValid = true;
 
@@ -121,6 +126,20 @@ const Register = props => {
         setFormIsValid(checkFormIsValid);
     }
 
+    const registerEventHandler = (event) => {
+        event.preventDefault();
+        authRegister(dispatch, formStructure.Email.value, formStructure.Password.value)
+    }
+
+    const loginEventHandler = () => {
+        props.history.push('/');
+    }
+
+    let errorMessage = null;
+    if (error) {
+        errorMessage = (<p className={classes.errorMessage}>{error.message}</p>);
+    }
+
     //get form info in state
     const formElementArray = [];
     for (let element in formStructure){
@@ -132,7 +151,7 @@ const Register = props => {
 
     //create form components
     let form = (
-        <form onSubmit="/">
+        <form onSubmit={registerEventHandler}>
             {formElementArray.map(element => (
                 <Input
                     key={element.id}
@@ -144,10 +163,18 @@ const Register = props => {
                     touched={element.config.touched}
                     changed={(event) => inputChangedHandler(event, element.id)} />
             ))}
-           
-            <Button btnType="Success" disabled={!formIsValid}>REGISTER</Button>
+           {errorMessage}
+            <Button btnType="Success" disabled={!formIsValid} clicked={registerEventHandler}>REGISTER</Button>
         </form>
     );
+
+    if (loading) {
+        form = <Spinner />;
+    }
+
+    if (token) {
+        props.history.push('/homePage');
+    }
 
     return (
         <React.Fragment>
@@ -157,7 +184,7 @@ const Register = props => {
                 {form}
             </div>
             <h4 className={classes.Or}>OR</h4>
-            <div className={classes.Register}><Button btnType="Link">Log in here</Button></div>
+            <div className={classes.Register}><Button btnType="Link" clicked={loginEventHandler}>Log in here</Button></div>
             
         </React.Fragment>
     );

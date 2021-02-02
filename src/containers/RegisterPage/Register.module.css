@@ -32,3 +32,7 @@
 .RLogo {
     position: absolute;
 }
+
+.errorMessage {
+    color: red;
+}
