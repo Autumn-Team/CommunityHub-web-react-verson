@@ -9,6 +9,7 @@ import Event from './containers/EventFeature/MainEventPage/MainEventPage';
 import NewEvent from './containers/EventFeature/NewEvent/NewEvent';
 import EventDetails from './containers/EventFeature/EventDetails/EventDetails';
 import Register from './containers/RegisterPage/registerPage';
+import Logout from './containers/Logout/Logout';
 
 const App = props =>  {
     return (
@@ -16,6 +17,7 @@ const App = props =>  {
             <Switch>
                 <Route path="/" exact component={Login} />
                 <Route path="/register" component={Register} />
+                <Route path="/logout" component={Logout} />
                 <Route path="/homePage" component={HomePage} />
                 <Route path="/event" exact component={Event} />
                 <Route path="/event/newEvent" component={NewEvent} />

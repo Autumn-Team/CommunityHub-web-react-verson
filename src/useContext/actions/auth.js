@@ -63,3 +63,6 @@ export const authRegister = (dispatch, email, password) => {
         })
 };
 
+export const logout = (dispatch) => {
+    dispatch ({ type: actionTypes.AUTH_LOGOUT})
+}

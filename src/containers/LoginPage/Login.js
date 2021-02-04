@@ -8,6 +8,7 @@ import SocialImage from '../../components/SocialImage/SocialImage';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import { updateObject, checkValidity } from '../../sharedFunctions/utility';
 import { authLogin, useAuthState, useAuthDispatch } from '../../useContext/index';
+import { Redirect } from 'react-router-dom';
 
 const Login = props => {
     const [loginForm, setLoginForm] = useState({
@@ -117,7 +118,8 @@ const Login = props => {
     }
 
     if (token) {
-        props.history.push('/homePage');
+        //props.history.push('/homePage');
+        return <Redirect to="/homePage" />;
     }
 
     return (
