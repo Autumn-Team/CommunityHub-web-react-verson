@@ -1,6 +1,7 @@
 .SideNavBar {
     top: 3.7rem;
     left: 50%;
+    z-index: -1;
     transform: translate(-50%, 0);
     width: 65.35%;
     height: 60px;
@@ -12,8 +13,9 @@
     align-items: center;
     padding-right: 10px;
     box-sizing: border-box;
-    color: black;
-    border: 1px solid black; 
+    color: rgb(0, 0, 0);
+    border: 1px solid black;
+    
 }
 
 .SideNavBar div {
