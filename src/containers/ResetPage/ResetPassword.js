@@ -13,8 +13,14 @@ const Reset = props =>{
             elementType:'input',
             elementConfig:{
                 placeholder: 'Please enter your verified code ',
-                type: 'code',
+                type: 'text',
             },
+            value : '',
+            validation: {
+                required: true
+            },
+            valid: false,
+            touched: false,
         },
         NewPassword: {
             label:'New password: ',
@@ -35,7 +41,7 @@ const Reset = props =>{
             label:'Confirm password: ',
             elementType: 'input',
             elementConfig:{
-                placeholder: "Please confirm your new password: ",
+                placeholder: "Please confirm your new password ",
                 type:  'password',
 
             },
