@@ -8,11 +8,19 @@ import { checkValidity, updateObject } from '../../sharedFunctions/utility';
 
 const Reset = props =>{
     const[resetForm,setResetForm] = useState({
+        VertifyCode:{
+            label:'Vertify code',
+            elementType:'input',
+            elementConfig:{
+                placeholder: 'Please enter your verified code ',
+                type: 'code',
+            },
+        },
         NewPassword: {
             label:'New password: ',
             elementType: 'input',
             elementConfig:{
-                placeholder: 'Please enter your new password: ',
+                placeholder: 'Please enter your new password ',
                 type:  'password',
 
             },
