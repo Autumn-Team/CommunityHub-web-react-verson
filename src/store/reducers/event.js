@@ -3,6 +3,7 @@ import { updateObject } from '../../sharedFunctions/utility';
 
 const initialState = {
     events: [],
+    eventByUser: [],
     fullEvent: null,
     loading: false,
     error: null,
@@ -48,6 +49,14 @@ const fetchEventSuccess = (state, action) => {
     });
 };
 
+const fetchEventByUserSuccess = (state, action) => {
+    return updateObject(state, {
+        eventByUser: action.eventsByUser,
+        loading: false,
+        error: null,
+    })
+}
+
 const fetchEventFail = (state, action) => {
     return updateObject(state, {
         loading: false,
@@ -87,6 +96,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.CREATE_EVENT_FAIL: return createEventFail(state, action);
         case actionTypes.FETCH_EVENT_START: return fetchEventStart(state, action);
         case actionTypes.FETCH_EVENT_SUCCESS: return fetchEventSuccess(state, action);
+        case actionTypes.FETCH_EVENT_BY_USER_SUCCESS: return fetchEventByUserSuccess(state,action);
         case actionTypes.FETCH_EVENT_FAIL: return fetchEventFail(state, action);
         case actionTypes.FETCH_FULL_EVENT_START: return fetchFullEventStart(state, action);
         case actionTypes.FETCH_FULL_EVENT_SUCCESS: return fetchFullEventSuccess(state, action);

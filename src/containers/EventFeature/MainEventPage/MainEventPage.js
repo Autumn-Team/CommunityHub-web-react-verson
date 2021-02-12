@@ -7,15 +7,17 @@ import SideNavBar from '../../../components/Navigation/SideNavBar/SideNavBar';
 import Event from '../../../components/Event/Event';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import * as actions from '../../../store/actions/index';
+import { useAuthState } from '../../../useContext/index';
 
 const MainEventPage = props => {
 
     const location = useLocation();
+    const { token } = useAuthState();
     const { onFetchEvents } = props;
 
     useEffect(() =>{
-        onFetchEvents();
-    }, [onFetchEvents, location]);
+        onFetchEvents(token);
+    }, [onFetchEvents, location, token]);
 
     let h2Title = null;
     let sideNav = null;
@@ -92,7 +94,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchEvents: () => dispatch(actions.fetchEvents()),
+        onFetchEvents: (token) => dispatch(actions.fetchEvents(token)),
     };
 };
 

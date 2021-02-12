@@ -9,6 +9,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import {instance as axios} from '../../../axios-instance';
 import errorHandler from '../../../sharedFunctions/errorHandler';
 import * as actions from '../../../store/actions/index';
+import { useAuthState } from '../../../useContext/index';
 
 const NewEvent = props => {
     const [eventForm, setEventForm] = useState({
@@ -95,6 +96,8 @@ const NewEvent = props => {
     })
     const [formIsValid, setFormIsValid] =  useState(false);
     
+    const { token } = useAuthState();
+
     const inputChangeHandler = (event, inputIdentifier) => {
         const updatedFormElement = updateObject(eventForm[inputIdentifier], {
             value: event.target.value,
@@ -126,7 +129,7 @@ const NewEvent = props => {
             creatorId: "something",
         }
         
-        props.onCreateEvent(newEvent);
+        props.onCreateEvent(newEvent, token);
     }
     
     const discardHandler = () => {
@@ -190,7 +193,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onCreateEvent: (eventData) => dispatch(actions.createEvent(eventData)),
+        onCreateEvent: (eventData, token) => dispatch(actions.createEvent(eventData, token)),
     };
 };
 

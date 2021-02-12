@@ -22,10 +22,10 @@ export const createEventStart = () => {
     };
 };
 
-export const createEvent = (eventData) => {
+export const createEvent = (eventData, token) => {
     return dispatch => {
         dispatch(createEventStart());
-        axios.post('/events.json', eventData)
+        axios.post('/events.json?auth=' + token, eventData)
             .then(response => {
                 dispatch(createEventSuccess(response.data.name, eventData));
             })
@@ -48,6 +48,13 @@ export const fetchEventSuccess = (events) => {
     };
 };
 
+export const fetchEventByUserSuccess = (events) => {
+    return {
+        type: actionTypes.FETCH_EVENT_BY_USER_SUCCESS,
+        eventsByUser: events,
+    };
+};
+
 export const fetchEventFail = (error) => {
     return {
         type: actionTypes.FETCH_EVENT_FAIL,
@@ -55,10 +62,10 @@ export const fetchEventFail = (error) => {
     };
 };
 
-export const fetchEvents = () => {
+export const fetchEvents = (token) => {
     return dispatch => {
         dispatch(fetchEventStart());
-        axios.get('/events.json')
+        axios.get('/events.json?auth=' + token)
             .then(response => {
                 const fetchData = [];
                 for (let key in response.data) {
@@ -69,6 +76,28 @@ export const fetchEvents = () => {
                 };
                 const reverseData = fetchData.reverse();
                 dispatch(fetchEventSuccess(reverseData));
+            })
+            .catch(error => {
+                dispatch(fetchEventFail(error));
+            })
+    }
+}
+
+export const fetchEventsByUser = (token, userId) => {
+    return dispatch => {
+        dispatch(fetchEventStart());
+        const queryParam = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
+        axios.get('/events.json' + queryParam)
+            .then ( response => {
+                const fetchData = [];
+                for (let key in response.data) {
+                    fetchData.push({
+                        ...response.data[key],
+                        id: key,
+                    });
+                };
+                const reverseData = fetchData.reverse();
+                dispatch(fetchEventByUserSuccess(reverseData));
             })
             .catch(error => {
                 dispatch(fetchEventFail(error));
@@ -96,10 +125,10 @@ export const fetchFullEventFail = (error) => {
     };
 };
 
-export const fetchFullEvent = (id) => {
+export const fetchFullEvent = (id, token) => {
     return dispatch => {
         dispatch(fetchFullEventStart());
-        axios.get(`/events/${id}.json`)
+        axios.get(`/events/${id}.json?auth=${token}`)
             .then(response => {
                 const fetchData = {...response.data};
                 dispatch(fetchFullEventSuccess(fetchData));

@@ -5,16 +5,18 @@ import classes from './EventDetails.module.css';
 import SideNavBar from '../../../components/Navigation/SideNavBar/SideNavBar';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import * as actions from '../../../store/actions/index';
+import { useAuthState } from '../../../useContext/index';
 
 const EventDetails = props => {
     
+    const { token } = useAuthState();
+
     const { onFetchFullEvents } = props;
     useEffect(() => {
-        onFetchFullEvents(props.match.params.eventId);
+        onFetchFullEvents(props.match.params.eventId, token);
         
-    },[onFetchFullEvents, props.match.params.eventId]);
+    },[onFetchFullEvents, props.match.params.eventId, token]);
     
-    console.log(props.fullEvent);
     let fullEvent = <div className={classes.EventDetails} ><Spinner /></div>;
 
     if (!props.loading) {
@@ -64,7 +66,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchFullEvents: (id) => dispatch(actions.fetchFullEvent(id)),
+        onFetchFullEvents: (id, token) => dispatch(actions.fetchFullEvent(id,token)),
     };
 };
 
