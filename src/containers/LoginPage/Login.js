@@ -77,6 +77,10 @@ const Login = props => {
         props.history.push('/register');
     }
 
+    const forgotPasswordEventHandler = () => {
+        props.history.push('/resetPassword');
+    }
+
     let errorMessage = null;
     if (error) {
         errorMessage = (<p className={classes.errorMessage}>{error.message}</p>);
@@ -107,7 +111,7 @@ const Login = props => {
                     changed={(event) => inputChangedHandler(event, element.id)} />
                     ))}
             </form>
-            <div className={classes.Link}><Button btnType="Link">Forgot Password</Button></div>
+            <div className={classes.Link}><Button clicked={forgotPasswordEventHandler} btnType="Link">Forgot Password</Button></div>
             {errorMessage}
             <Button btnType="Success" disabled={!formIsValid} clicked={loginEventHandler}>LOGIN</Button>
         </div>

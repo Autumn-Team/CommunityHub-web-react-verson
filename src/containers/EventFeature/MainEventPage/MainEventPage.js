@@ -69,16 +69,16 @@ const MainEventPage = props => {
     if (!props.loading) {
         events = props.error ? 
             (<p className={classes.errMessage}>{props.error.message}</p>) : 
-            (fetchEvent.map(currentEvent => (  
-                <Event key={currentEvent.id} 
-                date={currentEvent.eventData.date} 
-                title={currentEvent.eventData.title} 
-                location={currentEvent.eventData.location}
-                eventType={eventType}
-                seeMoreClicked= {() => seeMoreClickedHandler(currentEvent.id)} />
-            )));
-        
-        if (fetchEvent.length === 0) events = <p className={classes.Empty}>There is no event at the moment</p>;  
+            (fetchEvent.length === 0 ? 
+                (<p className={classes.Empty}>There is no event at the moment</p>) :
+                (fetchEvent.map(currentEvent => (  
+                    <Event key={currentEvent.id} 
+                    date={currentEvent.eventData.date} 
+                    title={currentEvent.eventData.title} 
+                    location={currentEvent.eventData.location}
+                    eventType={eventType}
+                    seeMoreClicked= {() => seeMoreClickedHandler(currentEvent.id)} />
+            ))));  
     }
 
     return (
