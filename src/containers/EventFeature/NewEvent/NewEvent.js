@@ -10,6 +10,7 @@ import {instance as axios} from '../../../axios-instance';
 import errorHandler from '../../../sharedFunctions/errorHandler';
 import * as actions from '../../../store/actions/index';
 import { useAuthState } from '../../../useContext/index';
+import { Redirect } from 'react-router-dom';
 
 const NewEvent = props => {
     const [eventForm, setEventForm] = useState({
@@ -96,7 +97,7 @@ const NewEvent = props => {
     })
     const [formIsValid, setFormIsValid] =  useState(false);
     
-    const { token } = useAuthState();
+    const { token, userId } = useAuthState();
 
     const inputChangeHandler = (event, inputIdentifier) => {
         const updatedFormElement = updateObject(eventForm[inputIdentifier], {
@@ -126,7 +127,7 @@ const NewEvent = props => {
         
         const newEvent = {
             eventData: formData,
-            creatorId: "something",
+            userId: userId,
         }
         
         props.onCreateEvent(newEvent, token);
@@ -138,7 +139,8 @@ const NewEvent = props => {
     }
 
     if (props.error === 'no error') {
-        props.history.push('/event');
+        //props.history.push('/event');
+        return <Redirect to="/event" />;
     }
 
     const fromElementArray = [];
