@@ -1,6 +1,7 @@
 export { 
     authLogin, 
-    authRegister 
+    authRegister,
+    logout,
 } from './actions/auth';
 export { 
     useAuthState, 

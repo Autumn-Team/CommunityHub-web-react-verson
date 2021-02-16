@@ -2,6 +2,7 @@ import React from 'react';
 
 import classes from './NavBar.module.css';
 import MainNavigationItems from '../NavigationItems/MainNavigationItems';
+import Account from '../../Account/Account';
 
 const NavBar = props => (
     <header className={classes.NavBar}>
@@ -9,7 +10,8 @@ const NavBar = props => (
         <nav>
             <MainNavigationItems />
         </nav>
-        <div>account here</div>
+        <Account />
+        {/* <div>account here</div> */}
     </header>
 );
 

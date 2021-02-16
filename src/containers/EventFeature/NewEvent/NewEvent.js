@@ -9,6 +9,8 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import {instance as axios} from '../../../axios-instance';
 import errorHandler from '../../../sharedFunctions/errorHandler';
 import * as actions from '../../../store/actions/index';
+import { useAuthState } from '../../../useContext/index';
+import { Redirect } from 'react-router-dom';
 
 const NewEvent = props => {
     const [eventForm, setEventForm] = useState({
@@ -95,6 +97,8 @@ const NewEvent = props => {
     })
     const [formIsValid, setFormIsValid] =  useState(false);
     
+    const { token, userId } = useAuthState();
+
     const inputChangeHandler = (event, inputIdentifier) => {
         const updatedFormElement = updateObject(eventForm[inputIdentifier], {
             value: event.target.value,
@@ -123,10 +127,10 @@ const NewEvent = props => {
         
         const newEvent = {
             eventData: formData,
-            creatorId: "something",
+            userId: userId,
         }
         
-        props.onCreateEvent(newEvent);
+        props.onCreateEvent(newEvent, token);
     }
     
     const discardHandler = () => {
@@ -135,7 +139,8 @@ const NewEvent = props => {
     }
 
     if (props.error === 'no error') {
-        props.history.push('/event');
+        //props.history.push('/event');
+        return <Redirect to="/event" />;
     }
 
     const fromElementArray = [];
@@ -190,7 +195,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onCreateEvent: (eventData) => dispatch(actions.createEvent(eventData)),
+        onCreateEvent: (eventData, token) => dispatch(actions.createEvent(eventData, token)),
     };
 };
 

@@ -1,0 +1,26 @@
+.List {
+    list-style: none;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    top: 5.3%;
+    left: 88%;
+    text-align: center;
+    padding: 0px 50px 10px 50px;
+    color: black;
+    box-sizing: border-box;
+    z-index: 200;
+}
+
+.List li {
+    margin-top: 12px;
+    width: 100%;
+}
+
+.List li:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: rgb(17, 0, 255);
+    background-color: crimson;
+}
