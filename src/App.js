@@ -8,6 +8,8 @@ import HomePage from './containers/HomePage/HomePage';
 import Event from './containers/EventFeature/MainEventPage/MainEventPage';
 import NewEvent from './containers/EventFeature/NewEvent/NewEvent';
 import EventDetails from './containers/EventFeature/EventDetails/EventDetails';
+import NewForum from './containers/ForumFeature/NewForum/NewForum';
+import ForumDetails from './containers/ForumFeature/ForumDetails/ForumDetails';
 import Register from './containers/RegisterPage/registerPage';
 
 const App = props =>  {
@@ -22,6 +24,9 @@ const App = props =>  {
                 <Route path="/event/yourEvent" exact component={Event} />
                 <Route path="/event/attendingEvent" exact component={Event} />
                 <Route path="/event/:eventId" exact component={EventDetails} />
+                <Route path="/forum/newForum" component={NewForum} />
+                <Route path="/forum/:forumId" exact component={ForumDetails} />
+
             </Switch>
         </Layout>
     )

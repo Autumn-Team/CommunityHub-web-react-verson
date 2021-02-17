@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import classes from './EventDetails.module.css';
+import classes from './ForumDetails.module.css';
 import SideNavBar from '../../../components/Navigation/SideNavBar/SideNavBar';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import * as actions from '../../../store/actions/index';
@@ -56,15 +56,15 @@ const ForumDetails = props => {
 
 const mapStateToProps = state => {
     return {
-        fullForum: state.forum.fullForum,
-        loading: state.forum.loading,
-        error: state.forum.error,
+        fullForum: state.event.fullForum,
+        loading: state.event.loading,
+        error: state.event.error,
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchFullForums: (id) => dispatch(actions.fetchFullForum(id)),
+        onFetchFullForums: (id) => dispatch(actions.fetchFullEvent(id)),
     };
 };
 
